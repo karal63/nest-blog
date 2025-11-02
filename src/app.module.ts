@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PostEntity } from './entities/post.entity';
@@ -19,11 +17,9 @@ import { PostsModule } from './http/posts/posts.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       entities: [PostEntity],
-      synchronize: true,
+      synchronize: process.env.NODE_ENV === 'development' && true,
     }),
     PostsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
