@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from './user.entity';
 
 @Entity({ name: 'posts' })
 export class PostEntity {
@@ -10,8 +11,9 @@ export class PostEntity {
   name: string;
 
   @Column({ nullable: true })
-  descriprion: string;
+  description: string;
 
+  @ManyToOne(() => UserEntity)
   @Column()
   creator_id: string;
 }

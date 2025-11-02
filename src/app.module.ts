@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PostEntity } from './entities/post.entity';
 import { PostsModule } from './http/posts/posts.module';
+import { UsersModule } from './http/users/users.module';
+import { UserEntity } from './entities/user.entity';
 
 @Module({
   imports: [
@@ -16,10 +18,11 @@ import { PostsModule } from './http/posts/posts.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [PostEntity],
-      synchronize: process.env.NODE_ENV === 'development' && true,
+      entities: [PostEntity, UserEntity],
+      synchronize: process.env.NODE_ENV === 'development',
     }),
     PostsModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
