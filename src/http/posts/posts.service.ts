@@ -31,10 +31,10 @@ export class PostsService {
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+    return this.postRepository.update({ uuid: id }, updatePostDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async remove(id: number) {
+    return await this.postRepository.delete({ uuid: id });
   }
 }
