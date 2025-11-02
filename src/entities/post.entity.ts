@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class PostEntity {
   @Column()
   @PrimaryGeneratedColumn()
-  uuid: string;
+  uuid: number;
 
   @Column()
   name: string;
